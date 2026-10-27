@@ -30,4 +30,11 @@ jobs:
           cache: maven
 
       - name: Build and run tests
+        env:
+          JWT_SECRET: ci-test-secret-key-at-least-32-characters-long
+          DB_HOST: localhost
+          DB_PORT: 3306
+          DB_NAME: mindful_spending
+          DB_USERNAME: user
+          DB_PASSWORD: ci-test-password
         run: ./mvnw --batch-mode clean verify
