@@ -1,4 +1,4 @@
-package com.mindfulspending.exception;
+package com.mindfulspending.exception.user;
 
 public class EmailAlreadyExistsException extends RuntimeException {
     public EmailAlreadyExistsException(String email) {

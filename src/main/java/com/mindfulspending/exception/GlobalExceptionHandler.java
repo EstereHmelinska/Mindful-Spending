@@ -1,6 +1,15 @@
 package com.mindfulspending.exception;
 
 
+import com.mindfulspending.exception.category.CategoryInUseException;
+import com.mindfulspending.exception.category.CategoryNotFoundException;
+import com.mindfulspending.exception.category.DuplicateCategoryException;
+import com.mindfulspending.exception.spendingPeriod.InvalidSpendingPeriodException;
+import com.mindfulspending.exception.spendingPeriod.SpendingPeriodNotFoundException;
+import com.mindfulspending.exception.spendingPeriod.SpendingPeriodOverlapException;
+import com.mindfulspending.exception.user.EmailAlreadyExistsException;
+import com.mindfulspending.exception.user.UserNotFoundException;
+import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.AuthenticationException;
@@ -76,5 +85,28 @@ public class GlobalExceptionHandler {
         Map<String, String> body = new HashMap<>();
         body.put("error", ex.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
+    }
+    @ExceptionHandler(CategoryNotFoundException.class)
+    public ResponseEntity<Map<String,String>> handleCategoryNotFound(CategoryNotFoundException ex){
+        Map<String, String> body =new HashMap<>();
+        body.put("error",ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(body);
+    }
+
+    @ExceptionHandler(DuplicateCategoryException.class)
+    public ResponseEntity<Map<String, String>> handleDuplicateCategory(DuplicateCategoryException ex){
+        Map<String, String> body = new HashMap<>();
+        body.put("error", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(body);
+    }
+
+    @ExceptionHandler(CategoryInUseException.class)
+    public ResponseEntity<Map<String, String>> handleCategoryInUse(
+            CategoryInUseException ex) {
+
+        Map<String, String> body = new HashMap<>();
+        body.put("error", ex.getMessage());
+
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(body);
     }
 }
