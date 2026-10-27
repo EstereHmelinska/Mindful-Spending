@@ -32,8 +32,9 @@ jobs:
       - name: Build and run tests
         env:
           JWT_SECRET: ci-test-secret-key-at-least-32-characters-long
+          JWT_EXPIRATION_MS: '86400000'
           DB_HOST: localhost
-          DB_PORT: 3306
+          DB_PORT: '3306'
           DB_NAME: mindful_spending
           DB_USERNAME: user
           DB_PASSWORD: ci-test-password
