@@ -1,4 +1,4 @@
-package com.mindfulspending.exception;
+package com.mindfulspending.exception.spendingPeriod;
 
 public class SpendingPeriodOverlapException extends RuntimeException {
     public SpendingPeriodOverlapException(String message) {

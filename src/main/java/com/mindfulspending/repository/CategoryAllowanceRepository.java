@@ -17,4 +17,5 @@ public interface CategoryAllowanceRepository extends JpaRepository<CategoryAllow
             Long categoryAllowanceId,
             Long userId
     );
+    boolean existsByCategoryCategoryId(Long categoryId);
 }

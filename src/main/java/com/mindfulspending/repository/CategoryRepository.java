@@ -1,3 +1,4 @@
+
 package com.mindfulspending.repository;
 
 import com.mindfulspending.entity.Category;
@@ -9,7 +10,15 @@ import java.util.Optional;
 public interface CategoryRepository extends JpaRepository<Category, Long> {
 
     List<Category> findAllByIsDefaultTrue();
+
     List<Category> findAllByUserUserId(Long userId);
-    boolean existsByUserUserIdAndName(Long userId, String name);
-    Optional<Category> findByCategoryIdAndUserUserId(Long categoryId, Long userId);
+
+    boolean existsByUserUserIdAndNameIgnoreCase(Long userId, String name);
+
+    Optional<Category> findByCategoryIdAndUserUserId(
+            Long categoryId,
+            Long userId
+    );
+
+    boolean existsByIsDefaultTrueAndNameIgnoreCase(String name);
 }

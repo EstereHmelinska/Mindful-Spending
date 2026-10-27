@@ -38,6 +38,14 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
+  adminer:
+    image: adminer:latest
+    container_name: mindful-spending-adminer
+    ports:
+      - "8081:8080"
+    depends_on:
+      mysql:
+        condition: service_healthy
 
 volumes:
   mindful_spending_mysql_data:
